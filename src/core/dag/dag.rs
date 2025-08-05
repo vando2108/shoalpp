@@ -1,9 +1,4 @@
-use std::{
-    cell::RefCell,
-    collections::{HashSet, VecDeque},
-    rc::Rc,
-    thread::park_timeout,
-};
+use std::{cell::RefCell, collections::VecDeque, rc::Rc};
 
 use super::{
     types::{TBlock, TParty, TRound, TWave},
@@ -76,17 +71,25 @@ impl DAG {
                     if !go_next_round {
                         let first_steady_leader =
                             self._get_first_leader_vertex_leader(wave).unwrap();
+
                         for vertex in &self.rounds[round].borrow().vertices {
-                            if vertex.borrow().source == self._get_first_leader_vertex_leader(wave)
-                            {
-                                flag = true;
+                            if vertex.borrow().source == first_steady_leader.borrow().source {
+                                go_next_round = true;
                                 break;
                             }
+                        }
+
+                        if go_next_round {
+                            self.try_advance_round();
                         }
                     }
                 }
             }
         }
+    }
+
+    pub fn try_advance_round(&self) -> bool {
+        true
     }
 
     pub fn try_add_to_dag(&mut self, v: &VertexPtr) -> bool {
