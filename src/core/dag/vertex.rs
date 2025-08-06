@@ -1,6 +1,6 @@
 use std::{cell::RefCell, rc::Rc};
 
-use super::types::{TParty, TRound};
+use crate::core::types::{TParty, TRound};
 
 pub type VertexPtr<T> = Rc<RefCell<Vertex<T>>>;
 pub struct Vertex<T> {

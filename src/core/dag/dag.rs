@@ -1,8 +1,9 @@
-use std::{cell::RefCell, iter, rc::Rc};
+use std::{cell::RefCell, rc::Rc};
+
+use crate::core::types::{TParty, TRound};
 
 use super::{
     round::{Round, RoundPtr},
-    types::{TParty, TRound},
     vertex::VertexPtr,
 };
 

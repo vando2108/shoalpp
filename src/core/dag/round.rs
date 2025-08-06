@@ -1,6 +1,8 @@
 use std::{cell::RefCell, rc::Rc};
 
-use super::{types::TParty, vertex::VertexPtr};
+use crate::core::types::TParty;
+
+use super::vertex::VertexPtr;
 
 pub type RoundPtr<T> = Rc<RefCell<Round<T>>>;
 pub struct Round<T> {
