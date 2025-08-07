@@ -1,15 +1,18 @@
-use std::{collections::VecDeque, io::Bytes};
+use std::{cell::RefCell, collections::VecDeque, io::Bytes, rc::Rc};
 
 use crate::core::{
     dag::{dag::DAG, vertex::VertexPtr},
     types::TParty,
 };
 
-pub type Transaction = Bytes<u8>;
+pub type Tx = Bytes<u8>;
+pub type TxPtr = Rc<RefCell<Tx>>;
 
 pub struct Bullshark {
     f: TParty,
-    dag: DAG<Transaction>,
-    buffer: VecDeque<VertexPtr<Transaction>>,
-    blocks_to_propose: VecDeque,
+    wait: bool,
+    dag: DAG<TxPtr>,
+    buffer: VecDeque<VertexPtr<TxPtr>>,
 }
+
+impl Bullshark {}

@@ -6,7 +6,7 @@ use super::vertex::VertexPtr;
 
 pub type RoundPtr<T> = Rc<RefCell<Round<T>>>;
 pub struct Round<T> {
-    vertices: Vec<Option<VertexPtr<T>>>,
+    pub vertices: Vec<Option<VertexPtr<T>>>,
 }
 
 impl<T> Round<T>
