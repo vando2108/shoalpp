@@ -1,3 +1,3 @@
+pub mod bullshark;
 pub mod dag;
 pub mod types;
-pub mod vertex;
